@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace dotnet_ef.Domains
 {
-    public class Produto
+    public class Pedido
     {
         [Key]
         public Guid Id { get; set; }
-        public string NomeProduto { get; set; }
-        public float Preco { get; set; }
+        public string Status { get; set; }
+        public DateTime OrderDate { get; set; }
 
-        public Produto()
+        public Pedido()
         {
             Id = Guid.NewGuid();
         }
