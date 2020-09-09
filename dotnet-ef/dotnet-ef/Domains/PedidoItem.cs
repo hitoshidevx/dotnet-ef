@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace dotnet_ef.Domains
 {
-    public class PedidoItem
+    public class PedidoItem : BaseDomain
     {
         [Key]
-
-        public Guid Id { get; set; }
         public Guid IdPedido { get; set; }
         [ForeignKey("IdPedido")]
         public Pedido Pedido { get; set; }
