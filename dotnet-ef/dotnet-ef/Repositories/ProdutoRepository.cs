@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace dotnet_ef.Repositories
 {
-    public class ProdutoRepositoy : IProduto
+    public class ProdutoRepository : IProduto
     {
         private readonly PedidoContext _ctx;
 
-        public ProdutoRepositoy()
+        public ProdutoRepository()
         {
             _ctx = new PedidoContext();
         }
@@ -37,8 +37,7 @@ namespace dotnet_ef.Repositories
         {
             try
             {
-                Produto produto = _ctx.Produtos.Find(id);
-                return produto;
+                return _ctx.Produtos.Find(id);
             }
             catch (Exception ex)
             {
@@ -96,7 +95,8 @@ namespace dotnet_ef.Repositories
                 if (produto == null)
                     throw new Exception("Produto não encontrado.");
 
-                _ctx.Produtos.Remove(produto); 
+                _ctx.Produtos.Remove(produto);
+                _ctx.SaveChanges();
             
             }
             catch (Exception ex)
@@ -110,11 +110,11 @@ namespace dotnet_ef.Repositories
         {
             try
             {
-                List<Produto> produtos = _ctx.Produtos.ToList();
-                return produtos;
+                return _ctx.Produtos.ToList();
             }
             catch (Exception ex)
             {
+
                 throw new Exception(ex.Message);
             }
         }

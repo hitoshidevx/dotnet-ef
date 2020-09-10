@@ -16,7 +16,7 @@ namespace dotnet_ef.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-GPMBRDJ\SQLEXPRESS;Initial Catalog=lojah;User ID=sa;Password=sa132;");
+                optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;Initial Catalog=lojah;User ID=sa;Password=sa132;");
             base.OnConfiguring(optionsBuilder);
         }
     }
