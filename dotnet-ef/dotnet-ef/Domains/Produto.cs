@@ -8,7 +8,6 @@ namespace dotnet_ef.Domains
 {
     public class Produto : BaseDomain
     {
-        [Key]
         public string NomeProduto { get; set; }
         public float Preco { get; set; }
 

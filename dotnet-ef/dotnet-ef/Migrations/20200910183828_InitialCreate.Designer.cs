@@ -10,7 +10,7 @@ using dotnet_ef.Context;
 namespace dotnet_ef.Migrations
 {
     [DbContext(typeof(PedidoContext))]
-    [Migration("20200909021321_InitialCreate")]
+    [Migration("20200910183828_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -9,7 +9,6 @@ namespace dotnet_ef.Domains
 {
     public class PedidoItem : BaseDomain
     {
-        [Key]
         public Guid IdPedido { get; set; }
         [ForeignKey("IdPedido")]
         public Pedido Pedido { get; set; }
