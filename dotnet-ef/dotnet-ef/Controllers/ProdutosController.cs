@@ -25,16 +25,42 @@ namespace dotnet_ef.Controllers
         
         // GET: api/<ProdutosController>
         [HttpGet]
-        public List<Produto> Get()
+        public IActionResult Get()
         {
-            return _produtoRepository.Listar(); 
+            try
+            {
+                var produtos = _produtoRepository.Listar();
+
+                if (produtos.Count == 0)
+                    return NoContent();
+
+                return Ok(produtos);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
 
         // GET api/<ProdutosController>/5
         [HttpGet("{id}")]
-        public Produto Get(Guid id)
+        public IActionResult Get(Guid id)
         {
-            return _produtoRepository.BuscarPorID(id);
+            try
+            {
+                Produto produto = _produtoRepository.BuscarPorID(id);
+
+                if (produto == null)
+                    return NotFound();
+
+                return Ok(produto);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
 
         // POST api/<ProdutosController>
