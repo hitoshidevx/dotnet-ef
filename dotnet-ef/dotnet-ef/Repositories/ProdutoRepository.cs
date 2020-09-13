@@ -19,6 +19,10 @@ namespace dotnet_ef.Repositories
             _ctx = new PedidoContext();
         }
 
+        /// <summary>
+        /// Adiciona um produto
+        /// </summary>
+        /// <param name="produto"></param>
         public void Adicionar(Produto produto)
         {
             try
@@ -33,6 +37,11 @@ namespace dotnet_ef.Repositories
             }
         }
 
+        /// <summary>
+        /// Busca um produto por seu Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Retorna o produto buscado pelo Id.</returns>
         public Produto BuscarPorID(Guid id)
         {
             try
@@ -46,6 +55,11 @@ namespace dotnet_ef.Repositories
             }
         }
 
+        /// <summary>
+        /// Busca pelo nome do produto.
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <returns>Retorna o produto buscado pelo nome.</returns>
         public List<Produto> BuscarPorNome(string nome)
         {
             try
@@ -59,16 +73,16 @@ namespace dotnet_ef.Repositories
             }
         }
 
+        /// <summary>
+        /// Edita um produto já cadastrado.
+        /// </summary>
+        /// <param name="produto"></param>
         public void Editar(Produto produto)
         {
             try
             {
                 //Busco um produto pelo seu Id
                 Produto produtoTemp = BuscarPorID(produto.Id);
-
-                //Verifica se o produto existe, caso não exista gera uma exception
-                if (produtoTemp == null)
-                    throw new Exception("Produto não encontrado");
 
                 //Altera as propriedades do produto
                 produtoTemp.NomeProduto = produto.NomeProduto;
@@ -86,6 +100,10 @@ namespace dotnet_ef.Repositories
             }
         }
 
+        /// <summary>
+        /// Deleta um produto já cadastrado.
+        /// </summary>
+        /// <param name="id"></param>
         public void Excluir(Guid id)
         {
             try
@@ -106,6 +124,10 @@ namespace dotnet_ef.Repositories
             }
         }
 
+        /// <summary>
+        /// Lista todos os produtos cadastrados.
+        /// </summary>
+        /// <returns>Retorna todos os produtos e seus dados, respectivamente.</returns>
         public List<Produto> Listar()
         {
             try

@@ -65,24 +65,55 @@ namespace dotnet_ef.Controllers
 
         // POST api/<ProdutosController>
         [HttpPost]
-        public void Post(Produto produto)
+        public IActionResult Post(Produto produto)
         {
-            _produtoRepository.Adicionar(produto);
+            try
+            {
+                _produtoRepository.Adicionar(produto);
+                return Ok(produto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT api/<ProdutosController>/5
         [HttpPut("{id}")]
-        public void Put(Guid id, Produto produto)
+        public IActionResult Put(Guid id, Produto produto)
         {
-            produto.Id = id;
-            _produtoRepository.Editar(produto);
+            try
+            {
+                var produtoTemp = _produtoRepository.BuscarPorID(id);
+                if (produtoTemp == null)
+                    return NotFound();
+
+                produto.Id = id;
+                _produtoRepository.Editar(produto);
+
+                return Ok(produto);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
 
         // DELETE api/<ProdutosController>/5
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
-            _produtoRepository.Excluir(id);
+            try
+            {
+                _produtoRepository.Excluir(id);
+
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
