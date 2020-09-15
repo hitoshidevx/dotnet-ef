@@ -15,6 +15,5 @@ namespace dotnet_ef.Domains
         public Guid IdProduto { get; set; }
         [ForeignKey("IdProduto")]
         public Produto Produto { get; set; }
-
     }
 }

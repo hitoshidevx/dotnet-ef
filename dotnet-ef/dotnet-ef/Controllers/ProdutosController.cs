@@ -34,12 +34,20 @@ namespace dotnet_ef.Controllers
                 if (produtos.Count == 0)
                     return NoContent();
 
-                return Ok(produtos);
+                return Ok(new
+                {
+                    totalCount = produtos.Count,
+                    data = produtos
+                });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                return BadRequest(ex.Message);
+                return BadRequest(new
+                {
+                    statusCode = 400,
+                    error = "Ocorreu um erro no endpoint Get/produtos. Envie um e-mail para email@email.com informando."
+                });
             }
         }
 
@@ -88,7 +96,6 @@ namespace dotnet_ef.Controllers
                 if (produtoTemp == null)
                     return NotFound();
 
-                produto.Id = id;
                 _produtoRepository.Editar(produto);
 
                 return Ok(produto);

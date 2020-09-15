@@ -11,5 +11,8 @@ namespace dotnet_ef.Domains
         public string NomeProduto { get; set; }
         public float Preco { get; set; }
 
+        //Relacionamento com a tabela PedidoItem = 1, N
+        public List<PedidoItem> PedidosItens { get; set; }
+
     }
 }
