@@ -25,16 +25,42 @@ namespace dotnet_ef.Context
 
         // GET: api/<PedidoController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                var pedidos = _pedidoRepository.Listar();
+
+                if (pedidos.Count == 0)
+                    return NoContent();
+
+                return Ok(pedidos);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
 
         // GET api/<PedidoController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(Guid id)
         {
-            return "value";
+            try
+            {
+                var pedido = _pedidoRepository.BuscarPorID(id);
+
+                if (pedido == null)
+                    return NotFound();
+
+                return Ok(pedido);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
 
         // POST api/<PedidoController>

@@ -54,8 +54,6 @@ C:\Users\Kiyoshi\Documents\GitHub\dotnet-ef\dotnet-ef\dotnet-ef\bin\Debug\netcor
 C:\Users\Kiyoshi\Documents\GitHub\dotnet-ef\dotnet-ef\dotnet-ef\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Kiyoshi\Documents\GitHub\dotnet-ef\dotnet-ef\dotnet-ef\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\Kiyoshi\Documents\GitHub\dotnet-ef\dotnet-ef\dotnet-ef\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\Kiyoshi\Documents\GitHub\dotnet-ef\dotnet-ef\dotnet-ef\obj\Debug\netcoreapp3.1\dotnet-ef.csproj.CoreCompileInputs.cache
-C:\Users\Kiyoshi\Documents\GitHub\dotnet-ef\dotnet-ef\dotnet-ef\obj\Debug\netcoreapp3.1\dotnet-ef.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Kiyoshi\Documents\GitHub\dotnet-ef\dotnet-ef\dotnet-ef\obj\Debug\netcoreapp3.1\dotnet-ef.dll
 C:\Users\Kiyoshi\Documents\GitHub\dotnet-ef\dotnet-ef\dotnet-ef\obj\Debug\netcoreapp3.1\dotnet-ef.pdb
 C:\Users\Kiyoshi\Documents\GitHub\dotnet-ef\dotnet-ef\dotnet-ef\obj\Debug\netcoreapp3.1\dotnet-ef.genruntimeconfig.cache
