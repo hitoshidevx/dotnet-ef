@@ -24,7 +24,10 @@ namespace dotnet_ef.Controllers
             _produtoRepository = new ProdutoRepository();
         }
         
-        // GET: api/<ProdutosController>
+        /// <summary>
+        /// Ler todos os produtos cadastrados
+        /// </summary>
+        /// <returns>Produtos</returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -52,7 +55,11 @@ namespace dotnet_ef.Controllers
             }
         }
 
-        // GET api/<ProdutosController>/5
+        /// <summary>
+        /// Ler um produto a partir do seu Id
+        /// </summary>
+        /// <param name="id">Id do Produto</param>
+        /// <returns>Produto pelo seu Id</returns>
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
@@ -73,6 +80,11 @@ namespace dotnet_ef.Controllers
         }
 
         //FromForm - Recebe os dados do produto via Form-Data.
+        /// <summary>
+        /// Cadastra um produto no banco de dados
+        /// </summary>
+        /// <param name="produto"></param>
+        /// <returns>Produto já cadastrado</returns>
         [HttpPost]
         public IActionResult Post([FromForm]Produto produto)
         {
@@ -95,6 +107,8 @@ namespace dotnet_ef.Controllers
 
                     //Execute o comando da criação do arquivo no local informado
                     produto.Imagem.CopyTo(streamImagem);
+
+                    produto.UrlImagem = "http://localhost:52090/upload/imagens" + nomeArquivo;
                 }
 
                 //Adiciona um produto
@@ -109,7 +123,12 @@ namespace dotnet_ef.Controllers
             }
         }
 
-        // PUT api/<ProdutosController>/5
+        /// <summary>
+        /// Altera um produto já cadastrado no banco de dados.
+        /// </summary>
+        /// <param name="id">Id do Produto</param>
+        /// <param name="produto">Produto alterado</param>
+        /// <returns>Produto já alterado</returns>
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, Produto produto)
         {
@@ -134,7 +153,11 @@ namespace dotnet_ef.Controllers
             }
         }
 
-        // DELETE api/<ProdutosController>/5
+        /// <summary>
+        /// Delete um produto a partir do seu Id.
+        /// </summary>
+        /// <param name="id">Id do Produto</param>
+        /// <returns>Ok</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {

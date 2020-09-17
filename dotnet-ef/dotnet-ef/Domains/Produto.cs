@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,6 +24,7 @@ namespace dotnet_ef.Domains
         public string UrlImagem { get; set; }
 
         [NotMapped] //Não mapeia a propriedade no banco de dados.
+        [JsonIgnore] //Ignora a propriedade no retorno no Json
         public IFormFile Imagem { get; set; }
 
     }

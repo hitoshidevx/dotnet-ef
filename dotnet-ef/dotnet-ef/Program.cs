@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace dotnet_ef
 {
+#pragma warning disable CS1591
     public class Program
     {
         public static void Main(string[] args)
@@ -23,4 +24,5 @@ namespace dotnet_ef
                     webBuilder.UseStartup<Startup>();
                 });
     }
+#pragma warning restore CS1591
 }
