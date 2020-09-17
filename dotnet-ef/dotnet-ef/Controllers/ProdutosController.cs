@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnet_ef.Domains;
@@ -71,17 +72,39 @@ namespace dotnet_ef.Controllers
             }
         }
 
-        // POST api/<ProdutosController>
+        //FromForm - Recebe os dados do produto via Form-Data.
         [HttpPost]
-        public IActionResult Post(Produto produto)
+        public IActionResult Post([FromForm]Produto produto)
         {
             try
             {
+                //Verifico se foi enviado um arquivo com a imagem
+                if(produto.Imagem != null)
+                {
+                    //Gera o nome do arquivo único 
+                    //Pego a extensão do arquivo 
+                    //Concateno o nome do arquivo com sua extensão
+                    var nomeArquivo = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(produto.Imagem.FileName);
+
+                    //GetCurrentDirectory - Pega o caminho do diretório atual, aplicação esta 
+                    var caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), @"wwwRoot\upload\imagens", nomeArquivo);
+
+                    //Crio um objeto do tipo FileStream passanda o caminho do arquivo
+                    //Passa para criar este arquivo     
+                    using var streamImagem = new FileStream(caminhoArquivo, FileMode.Create);
+
+                    //Execute o comando da criação do arquivo no local informado
+                    produto.Imagem.CopyTo(streamImagem);
+                }
+
+                //Adiciona um produto
                 _produtoRepository.Adicionar(produto);
+                //Retorna ok com os dados do produto.
                 return Ok(produto);
             }
             catch (Exception ex)
             {
+                //Caso ocorra um erro retorna BadRequest com a mensagem.
                 return BadRequest(ex.Message);
             }
         }
@@ -92,17 +115,21 @@ namespace dotnet_ef.Controllers
         {
             try
             {
+                //Busca o produto pelo seu id.
                 var produtoTemp = _produtoRepository.BuscarPorID(id);
+                //Caso o produto seja nulo, retorna NotFound (Não Encontrado)
                 if (produtoTemp == null)
                     return NotFound();
 
+                //Edita o produto.
                 _produtoRepository.Editar(produto);
 
+                //Retorna ok com os dados alterados de um produto que exista.
                 return Ok(produto);
             }
             catch (Exception ex)
             {
-
+                //Caso ocorra um erro retorna BadRequest com a mensagem.
                 return BadRequest(ex.Message);
             }
         }
@@ -113,12 +140,15 @@ namespace dotnet_ef.Controllers
         {
             try
             {
+                //Excluir um produto a partir do seu id.
                 _produtoRepository.Excluir(id);
 
+                //Retorna ok caso o produto seja escluído
                 return Ok(id);
             }
             catch (Exception ex)
             {
+                //Caso ocorra um erro retorna BadRequest com a mensagem.
                 return BadRequest(ex.Message);
             }
         }
